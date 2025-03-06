@@ -5,21 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="" type="image/x-icon">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: black;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
       color: white;
+      background: #000;
+      flex-direction: column;
     }
 
-    {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://railway.app",
-            "logo": "https://i.ibb.co/gb9PrWxh/shaban-sobx-md.jpg"
+    /* Floating Bubbles Background */
+    .bubble {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.5;
+    }
+
+    .bubble:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      left: 10%;
+      animation-duration: 8s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      left: 30%;
+      animation-duration: 10s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      left: 50%;
+      animation-duration: 12s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 40px;
+      height: 40px;
+      left: 70%;
+      animation-duration: 6s;
+    }
+
+    .bubble:nth-child(5) {
+      width: 90px;
+      height: 90px;
+      left: 90%;
+      animation-duration: 14s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+      }
+      100% {
+        transform: translateY(-10vh);
+      }
     }
 
     .button-container {
@@ -27,105 +81,113 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: -50px; /* SHABAN-MD SESSION ko upar le jaane ka effect */
     }
 
+    /* SHABAN-MD SESSION Styling */
     h3 {
-      margin-top: -40px;
-      opacity: 0;
-      animation: fadeIn 3s forwards;
+      margin-bottom: 50px; /* Thoda aur upar adjust kiya */
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: rainbowText 6s infinite ease-in-out;
     }
 
+    @keyframes rainbowText {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Colorful Box Effects */
     .button {
-      width: 140px;
-      height: 40px;
+      width: 160px;
+      height: 45px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       padding: 0px 15px;
-      background-color: red;
       border-radius: 10px;
-      border: none;
-      color: white;
       position: relative;
       cursor: pointer;
       font-weight: 900;
-      transition-duration: .2s;
-      background: linear-gradient(0deg, #000, #272727);
       text-decoration: none;
+      color: white;
+      background: #000;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      border: 2px solid transparent;
+      animation: colorfulBorder 4s infinite linear;
     }
 
-  
-    footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #222; /* Darker gray footer background */
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    
-  }
-    .button:before, .button:after {
-      content: '';
-      position: absolute;
-      left: -2px;
-      top: -2px;
-      border-radius: 10px;
-      background: linear-gradient(45deg, #48ff00, #15ff00, #000000,#000000, #ff0000);
-      background-size: 400%;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      z-index: -1;
-      animation: steam 10s linear infinite;
-    }
-
-    @keyframes steam {
+    @keyframes colorfulBorder {
       0% {
-        background-position: 0 0;
+        border-color: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
       }
-
+      25% {
+        border-color: #00ffff;
+        box-shadow: 0 0 10px #00ffff;
+      }
       50% {
-        background-position: 400% 0;
+        border-color: #ff0000;
+        box-shadow: 0 0 10px #ff0000;
       }
-
+      75% {
+        border-color: #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+      }
       100% {
-        background-position: 0 0;
+        border-color: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
       }
     }
 
-    .button:after {
-      filter: blur(50px);
+    .button:hover {
+      transform: scale(1.1);
     }
 
-    .button span {
-      z-index: 1;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #222;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
+  <!-- Floating Bubbles -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
   <div class="button-container">
-    <h3> SHABAN-MD SESSION</h3>
-    <div></div>
-    <a href="/qr" class="button" target="_blank"> <span>QR-CODE</span> </a> <br>
-    <a href="/pair" class="button" target="_blank"> <span>PAIRING-CODE</span> </a> <br>
-    <a href="https://github.com/MRSHABAN40/SHABAN-MD-V5/fork" class="button" target="_blank"> <span>FORK SHABAN MD</span> </a> <br> </a>
-    <a href="https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O" class="button" target="_blank"> <span>WhatsApp</span> </a> <br>
+    <h3>SHABAN-MD SESSION</h3>
+    <a href="/qr" class="button" target="_blank"><span>QR-CODE</span></a> <br>
+    <a href="/pair" class="button" target="_blank"><span>PAIRING-CODE</span></a> <br>
+    <a href="https://github.com/MRSHABAN40/SHABAN-MD-V5/fork" class="button" target="_blank"><span>FORK SHABAN MD</span></a> <br>
+    <a href="https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O" class="button" target="_blank"><span>WhatsApp</span></a> <br>
 
-    <p>HAVE ANY ERROR CLICK ERROR BUTTON</p>
-
-    <a href="https://wa.me/923059395959" class="button" target="_blank"> <span>ERROR</span> </a> <br>
+    <a href="https://wa.me/923059395959" class="button" target="_blank"><span>ADMIN</span></a> <br>
 
     <footer>
-     MR-SHABAN &copy; <span id="currentYear"></span>
+      MR-SHABAN &copy; <span id="currentYear"></span>
     </footer>
-  
 </body>
-</html>
+                                                                                                     </html>
